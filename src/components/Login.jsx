@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <>
-      <div className="w-[40%] flex justify-center items-center mx-auto my-6">
-        <div className="card bg-neutral text-neutral-content w-[80%] min-h-[300px]">
+      <div className="flex justify-center items-center mx-auto my-24">
+        <div className="card bg-neutral text-neutral-content min-h-[300px] w-[30%]">
           <div className="card-body items-center text-center">
             <h1 className="text-2xl font-bold">Login</h1>
             {/* email */}
