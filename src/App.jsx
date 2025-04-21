@@ -1,12 +1,20 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Body from "./components/Body";
+import Login from "./components/Login";
 
 function App() {
   return (
     <>
-      <h1 class="text-5xl text-red-600">Hello world!</h1>
+      <BrowserRouter basename="/">
+        <Routes>
+          <Route path="/" element={<Body />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
 
 export default App;
- 
