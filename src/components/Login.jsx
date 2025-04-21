@@ -1,6 +1,21 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
+  const { login } = useLogin();
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  const handleLogin = async () => {
+    console.log("emailRef:", emailRef);
+    console.log("passwordRef:", passwordRef);
+    const loginData = {
+      email: emailRef.current,
+      password: passwordRef.current,
+    };
+    login(loginData);
+  };
   return (
     <>
       <div className="flex justify-center items-center mx-auto my-24">
@@ -25,7 +40,12 @@ const Login = () => {
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </g>
               </svg>
-              <input type="email" placeholder="mail@site.com" required />
+              <input
+                type="email"
+                placeholder="mail@site.com"
+                required
+                onChange={(e) => (emailRef.current = e.target.value)}
+              />
             </label>
             <div className="validator-hint hidden">
               Enter valid email address
@@ -60,6 +80,7 @@ const Login = () => {
                 minlength="8"
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                onChange={(e) => (passwordRef.current = e.target.value)}
               />
             </label>
             <p className="validator-hint hidden">
@@ -70,7 +91,9 @@ const Login = () => {
               At least one uppercase letter
             </p>
             <div className="card-actions justify-end my-3">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary" onClick={handleLogin}>
+                Login
+              </button>
             </div>
             <div className="divider my-2">OR</div>
             <div className="card-actions justify-end">
