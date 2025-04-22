@@ -4,8 +4,8 @@ import useLogin from "../hooks/useLogin";
 
 const Login = () => {
   const { login } = useLogin();
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
+  const emailRef = useRef("elon@gmail.com");
+  const passwordRef = useRef("Elon@1234");
 
   const handleLogin = async () => {
     console.log("emailRef:", emailRef);
