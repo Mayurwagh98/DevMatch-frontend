@@ -8,8 +8,6 @@ const Login = () => {
   const passwordRef = useRef("Elon@1234");
 
   const handleLogin = async () => {
-    console.log("emailRef:", emailRef);
-    console.log("passwordRef:", passwordRef);
     const loginData = {
       email: emailRef.current,
       password: passwordRef.current,
