@@ -5,6 +5,7 @@ const loginSlice = createSlice({
   initialState: {
     isLoading: false,
     userData: null,
+    loginError: null,
   },
   reducers: {
     requestLogin: (state) => {
@@ -17,8 +18,12 @@ const loginSlice = createSlice({
     removeUser: (state) => {
       state.userData = null;
     },
+    addLoginError: (state, action) => {
+      state.loginError = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 
-export const { addUser, requestLogin, removeUser } = loginSlice.actions;
+export const { addUser, requestLogin, removeUser, addLoginError } = loginSlice.actions;
 export default loginSlice.reducer;

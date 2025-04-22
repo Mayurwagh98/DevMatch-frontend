@@ -1,8 +1,10 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
+import { useSelector } from "react-redux";
 
 const Login = () => {
+  const { loginError } = useSelector((state) => state.user);
   const { login } = useLogin();
   const emailRef = useRef("elon@gmail.com");
   const passwordRef = useRef("Elon@1234");
@@ -88,6 +90,9 @@ const Login = () => {
               At least one lowercase letter <br />
               At least one uppercase letter
             </p>
+            <span className="text-red-500 flex justify-start items-start w-full">
+              {loginError?.toUpperCase()}
+            </span>
             <div className="card-actions justify-end my-3">
               <button className="btn btn-primary" onClick={handleLogin}>
                 Login

@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addUser, requestLogin } from "../redux/authSlices/loginSlice";
+import {
+  addLoginError,
+  addUser,
+  requestLogin,
+} from "../redux/authSlices/loginSlice";
 import { useNavigate } from "react-router-dom";
 
 const useLogin = () => {
@@ -19,6 +23,7 @@ const useLogin = () => {
         navigate("/");
       }
     } catch (error) {
+      dispatch(addLoginError(error.response.data || "something went wrong"));
       throw new Error(error);
     }
   };
