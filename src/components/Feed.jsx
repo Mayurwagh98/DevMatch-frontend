@@ -1,4 +1,7 @@
+import useGetMyFeed from "../hooks/useGetMyFeed";
+
 const Feed = () => {
+  useGetMyFeed();
   return <>feed</>;
 };
 
