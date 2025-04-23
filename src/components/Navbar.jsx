@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import useLogout from "../hooks/useLogout";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
@@ -27,10 +28,10 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link className="justify-between" to={"/profile"}>
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a>Settings</a>
