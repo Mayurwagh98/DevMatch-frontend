@@ -1,5 +1,5 @@
 const UserCard = ({ user }) => {
-  const { firstName, lastName, age, gender, photoUrl, about } = user;
+  const { firstName, lastName, age, photoUrl, about, skills } = user;
 
   return (
     user && (
@@ -13,8 +13,9 @@ const UserCard = ({ user }) => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{firstName + " " + lastName}</h2>
-          <p>{age + " " + gender}</p>
+          <p>{age}</p>
           <p>{about}</p>
+          <p>{skills}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-primary">Ignore</button>
             <button className="btn btn-primary">Interested</button>
