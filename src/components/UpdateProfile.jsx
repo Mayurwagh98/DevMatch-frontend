@@ -1,7 +1,12 @@
 import { useState } from "react";
 import UserCard from "./UserCard";
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/authSlices/loginSlice";
 
 const UpdateProfile = ({ user: userData }) => {
+  const dispatch = useDispatch();
   const [profileUpdateData, setProfileUpdateData] = useState({
     firstName: userData?.firstName,
     lastName: userData?.lastName,
@@ -14,8 +19,16 @@ const UpdateProfile = ({ user: userData }) => {
   const { firstName, lastName, age, photoUrl, skills, about } =
     profileUpdateData;
 
-  const updateProfile = () => {
+  const updateProfile = async () => {
     try {
+      const { data } = await axios.patch(
+        BASE_URL + "/profile/edit",
+        profileUpdateData,
+        { withCredentials: true }
+      );
+      if (data.success) {
+        dispatch(addUser(data.loggedInUser));
+      }
     } catch (error) {
       console.log("error:", error);
     }
@@ -104,7 +117,9 @@ const UpdateProfile = ({ user: userData }) => {
               />
             </label>
             <div className="card-actions justify-end my-3">
-              <button className="btn btn-primary">Save</button>
+              <button className="btn btn-primary" onClick={updateProfile}>
+                Save
+              </button>
             </div>
           </div>
         </div>
