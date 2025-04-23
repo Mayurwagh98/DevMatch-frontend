@@ -3,12 +3,12 @@ const UserCard = ({ user }) => {
 
   return (
     user && (
-      <div className="card bg-base-300 w-96 shadow-sm h-[30rem] mx-auto my-5">
-        <figure>
+      <div className="card bg-base-300 w-96 shadow-sm min-h-[30rem] mx-auto my-5">
+        <figure className="h-[15rem]">
           <img
             src={photoUrl}
             alt="image"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fit"
           />
         </figure>
         <div className="card-body">

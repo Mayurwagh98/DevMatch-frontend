@@ -100,6 +100,20 @@ const UpdateProfile = ({ user: userData }) => {
                 }
               />
             </label>
+            <label className="input validator my-2">
+              <input
+                type="text"
+                placeholder="Enter about you"
+                required
+                value={about}
+                onChange={(e) =>
+                  setProfileUpdateData({
+                    ...profileUpdateData,
+                    about: e.target.value,
+                  })
+                }
+              />
+            </label>
             {/* gender */}
 
             <label className="input validator my-2">
