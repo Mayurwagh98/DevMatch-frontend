@@ -12,7 +12,7 @@ const UpdateProfile = ({ user: userData }) => {
 
   return (
     <div className="flex justify-center items-center mx-auto my-24">
-      <div className="card bg-neutral text-neutral-content min-h-[300px] w-[30%]">
+      <div className="card bg-neutral text-neutral-content min-h-[300px] w-96">
         <div className="card-body items-center text-center">
           <h1 className="text-2xl font-bold">Profile</h1>
           {/* firstname */}

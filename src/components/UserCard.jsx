@@ -3,7 +3,7 @@ const UserCard = ({ user }) => {
 
   return (
     user && (
-      <div className="card bg-base-300 w-96 shadow-sm h-[30rem]">
+      <div className="card bg-base-300 w-96 shadow-sm h-[30rem] mx-auto my-5">
         <figure>
           <img
             src={photoUrl}
