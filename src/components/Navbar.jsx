@@ -9,7 +9,9 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-300 shadow-md">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">DevMatch</a>
+        <Link className="btn btn-ghost text-xl" to={"/"}>
+          DevMatch
+        </Link>
       </div>
       <div className="flex items-center gap-1">
         {userData && <p>Welcome, {userData?.firstName}</p>}
@@ -34,7 +36,10 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a>Settings</a>
+              <Link to={"/requests"}>Requests</Link>
+            </li>
+            <li>
+              <Link to={"/connections"}>My Connections</Link>
             </li>
             <li>
               <a onClick={logoutUser}>Logout</a>
