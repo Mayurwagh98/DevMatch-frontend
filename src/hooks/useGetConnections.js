@@ -25,6 +25,8 @@ const useGetConnections = () => {
       console.log("error:", error);
     }
   };
+
+  return { connections };
 };
 
 export default useGetConnections;
