@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 import useGetMyProfile from "./hooks/useGetMyProfile";
 import Profile from "./components/Profile";
+import MyConnections from "./components/MyConnections";
 
 function App() {
   const { getMyProfile } = useGetMyProfile();
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Feed />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/connections" element={<MyConnections />} />
           </Route>
         </Routes>
       </BrowserRouter>
