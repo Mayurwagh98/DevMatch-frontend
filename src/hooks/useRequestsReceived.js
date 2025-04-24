@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addConnectionRequests,
   requestConnectionRequests,
@@ -9,6 +9,7 @@ import {
 
 const useRequestsReceived = () => {
   const dispatch = useDispatch();
+  const { requests } = useSelector((state) => state.requests);
   useEffect(() => {
     requestsReceived();
   }, []);
@@ -18,12 +19,13 @@ const useRequestsReceived = () => {
       const { data } = await axios.get(BASE_URL + "/user/requests/received", {
         withCredentials: true,
       });
-      console.log("data:", data);
       dispatch(addConnectionRequests(data));
     } catch (error) {
       throw new Error(error);
     }
   };
+
+  return { requests };
 };
 
 export default useRequestsReceived;
