@@ -18,20 +18,28 @@ const Requests = () => {
               key={_id}
               className="flex items-center space-x-2 w-full min-h-[5rem] p-4 bg-base-300 rounded-md my-2"
             >
-              <img
-                src={photoUrl}
-                alt="profile pic"
-                className="w-30 h-30 rounded-full mr-4 object-fit"
-              />
-              <div className="flex flex-col space-y-1">
-                <span className="font-bold">
-                  {firstName} {lastName}
-                </span>
-                <span>{age}</span>
-                <span className="text-sm">{about}</span>
-                <span className="text-sm text-gray-500">
-                  {skills && skills.join(", ")}
-                </span>
+              <div className="flex items-center w-[80%] min-h-[5rem]">
+                <img
+                  src={photoUrl}
+                  alt="profile pic"
+                  className="w-30 h-30 rounded-full mr-4 object-fit"
+                />
+                <div className="flex flex-col space-y-1">
+                  <span className="font-bold">
+                    {firstName} {lastName}
+                  </span>
+                  <span>{age}</span>
+                  <span className="text-sm">{about}</span>
+                  <span className="text-sm text-gray-500">
+                    {skills && skills.join(", ")}
+                  </span>
+                </div>
+              </div>
+
+              {/* accept/reject button divs */}
+              <div className="flex justify-between items-center w-[26%]">
+                <button className="btn btn-soft btn-accent">Accept</button>
+                <button className="btn btn-soft btn-secondary">Reject</button>
               </div>
             </div>
           );
