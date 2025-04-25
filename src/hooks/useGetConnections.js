@@ -6,6 +6,7 @@ import {
   addConnections,
   requestConnnections,
 } from "../redux/connections/connectionsSlice";
+import errorHandler from "../helpers/errorHandler";
 
 const useGetConnections = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const useGetConnections = () => {
       });
       dispatch(addConnections(data));
     } catch (error) {
-      console.log("error:", error);
+      errorHandler(error).message;
     }
   };
 

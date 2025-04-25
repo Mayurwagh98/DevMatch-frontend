@@ -2,6 +2,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import { addUser } from "../redux/authSlices/loginSlice";
+import errorHandler from "../helpers/errorHandler";
 
 const useGetMyProfile = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const useGetMyProfile = () => {
       });
       dispatch(addUser(data));
     } catch (error) {
-      console.log(error);
+      errorHandler(error).message;
     }
   };
   return { getMyProfile };

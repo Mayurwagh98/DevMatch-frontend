@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../redux/feedSlices/feedSlice";
+import errorHandler from "../helpers/errorHandler"
 
 const useGetMyFeed = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,7 @@ const useGetMyFeed = () => {
       });
       dispatch(addFeed(data));
     } catch (error) {
-      console.log("error:", error);
-      throw new Error(error);
+      errorHandler(error).message;
     }
   };
 };

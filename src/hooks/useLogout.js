@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../redux/authSlices/loginSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import errorHandler from "../helpers/errorHandler";
 
 const useLogout = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,7 @@ const useLogout = () => {
       dispatch(removeUser());
       navigate("/login");
     } catch (error) {
-      console.log("error:", error);
-      throw new Error(error);
+      errorHandler(error).message;
     }
   };
 
