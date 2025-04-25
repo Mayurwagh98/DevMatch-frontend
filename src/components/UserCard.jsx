@@ -1,5 +1,8 @@
+import useIgnore from "../hooks/useIgnore";
+
 const UserCard = ({ user }) => {
-  const { firstName, lastName, age, photoUrl, about, skills } = user;
+  const { _id, firstName, lastName, age, photoUrl, about, skills } = user;
+  const { handleIgnore } = useIgnore();
 
   return (
     user && (
@@ -17,8 +20,18 @@ const UserCard = ({ user }) => {
           <p>{about}</p>
           <p>{skills}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Ignore</button>
-            <button className="btn btn-primary">Interested</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleIgnore("ignored", _id)}
+            >
+              Ignore
+            </button>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleIgnore("interested", _id)}
+            >
+              Interested
+            </button>
           </div>
         </div>
       </div>
