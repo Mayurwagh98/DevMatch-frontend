@@ -1,9 +1,12 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeRequest } from "../redux/requests/requestsSlice";
+import errorHandler from "../helpers/errorHandler";
 
 const useAcceptReq = () => {
+  const dispatch = useDispatch();
   const handleRequest = async (status, requestId) => {
-    console.log('requestId:', requestId)
     try {
       const { data } = await axios.post(
         BASE_URL + `/request/review/${status}/${requestId}`,
@@ -13,8 +16,10 @@ const useAcceptReq = () => {
         }
       );
       console.log("data:", data);
+      dispatch(removeRequest(requestId));
     } catch (error) {
       console.log("error:", error);
+      errorHandler(error).message;
     }
   };
 

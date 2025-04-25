@@ -8,18 +8,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import errorHandler from "../helpers/errorHandler";
 
-const useLogin = () => {
+const useSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const login = async (loginData) => {
+  const signup = async (signupData) => {
     try {
       dispatch(requestLogin());
       const { data } = await axios.post(
-        "http://localhost:8000/auth/login",
-        loginData,
+        "http://localhost:8000/auth/signup",
+        signupData,
         { withCredentials: true }
       );
-      dispatch(addUser(data.sanitizedUser));
+      console.log("data:", data);
+      dispatch(addUser(data.newUser));
       if (data.success) {
         navigate("/");
       }
@@ -28,7 +29,7 @@ const useLogin = () => {
       errorHandler(error).message;
     }
   };
-  return { login };
+  return { signup };
 };
 
-export default useLogin;
+export default useSignup;

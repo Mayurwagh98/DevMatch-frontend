@@ -5,6 +5,14 @@ import UserCard from "./UserCard";
 const Feed = () => {
   const { feed } = useSelector((state) => state.feed);
   useGetMyFeed();
+  if (!feed)
+    return (
+      <h1 className="text-xl font-bold text-center mt-7">No feed found</h1>
+    );
+  if (!feed.length)
+    return (
+      <h1 className="text-xl font-bold text-center mt-7">No feed found</h1>
+    );
   return (
     <>
       {feed && (
