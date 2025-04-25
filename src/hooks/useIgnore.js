@@ -7,7 +7,7 @@ const useIgnore = () => {
   const dispatch = useDispatch();
   const handleIgnore = async (status, recevierId) => {
     try {
-      const { data } = await axios.post(
+      await axios.post(
         BASE_URL + `/request/send/${status}/${recevierId}`,
         {},
         { withCredentials: true }
