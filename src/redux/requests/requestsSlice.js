@@ -16,7 +16,7 @@ const requestsSlice = createSlice({
     },
     removeRequest: (state, action) => {
       const newArray = state.requests.filter((r) => r._id !== action.payload);
-      return newArray;
+      state.requests = newArray;
     },
   },
 });
