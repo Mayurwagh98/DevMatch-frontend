@@ -8,15 +8,17 @@ const useAcceptReq = () => {
   const dispatch = useDispatch();
   const handleRequest = async (status, requestId) => {
     try {
-      await axios.post(
+      const { data } = await axios.post(
         BASE_URL + `/request/review/${status}/${requestId}`,
         {},
         {
           withCredentials: true,
         }
       );
+      console.log("data:", data);
       dispatch(removeRequest(requestId));
     } catch (error) {
+      console.log("error:", error);
       errorHandler(error).message;
     }
   };
