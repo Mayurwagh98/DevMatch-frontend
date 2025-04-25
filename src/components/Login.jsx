@@ -1,27 +1,68 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { useSelector } from "react-redux";
+import useSignup from "../hooks/useSignup";
 
 const Login = () => {
   const { loginError } = useSelector((state) => state.user);
   const { login } = useLogin();
+  const { signup } = useSignup();
   const emailRef = useRef("elon@gmail.com");
   const passwordRef = useRef("Elon@1234");
+  const firstNameRef = useRef("");
+  const lastNameRef = useRef("Elon@1234");
+  const [isSignup, setIsSignup] = useState(false);
 
-  const handleLogin = async () => {
+  const handleLogin = async (text) => {
     const loginData = {
       email: emailRef.current,
       password: passwordRef.current,
     };
-    login(loginData);
+    if (text === "login") {
+      login(loginData);
+    } else {
+      const signupData = {
+        firstName: firstNameRef.current,
+        lastName: lastNameRef.current,
+        email: emailRef.current,
+        password: passwordRef.current,
+      };
+      signup(signupData);
+    }
   };
+
   return (
     <>
       <div className="flex justify-center items-center mx-auto my-24">
         <div className="card bg-neutral text-neutral-content min-h-[300px] w-[30%]">
           <div className="card-body items-center text-center">
-            <h1 className="text-2xl font-bold">Login</h1>
+            <h1 className="text-2xl font-bold">
+              {isSignup ? "Sign up" : "Login"}
+            </h1>
+            {isSignup && (
+              <>
+                <label className="input validator">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter your first name"
+                    onChange={(e) => (firstNameRef.current = e.target.value)}
+                  />
+                </label>
+                {/* lastname */}
+                <label className="input validator">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter your last name"
+                    onChange={(e) => (lastNameRef.current = e.target.value)}
+                  />
+                </label>
+              </>
+            )}
+            {/* firstname */}
+
             {/* email */}
             <label className="input validator my-2">
               <svg
@@ -94,18 +135,29 @@ const Login = () => {
               {loginError?.toUpperCase()}
             </span>
             <div className="card-actions justify-end my-3">
-              <button className="btn btn-primary" onClick={handleLogin}>
-                Login
+              <button
+                className="btn btn-primary"
+                onClick={() => handleLogin(isSignup ? "signup" : "login")}
+              >
+                {isSignup ? "Sign up" : "Login"}
               </button>
             </div>
             <div className="divider my-2">OR</div>
             <div className="card-actions justify-end">
-              <p>
-                Don't have an account?{" "}
-                <Link to={"/signup"} className="text-blue-400">
-                  SignUp
-                </Link>
-              </p>
+              {!isSignup ? (
+                <p className="cursor-pointer" onClick={() => setIsSignup(true)}>
+                  Don't have an account?{" "}
+                  <span className="text-blue-400">SignUp</span>
+                </p>
+              ) : (
+                <p
+                  className="cursor-pointer"
+                  onClick={() => setIsSignup(false)}
+                >
+                  Already have an account?{" "}
+                  <span className="text-blue-400">Login</span>
+                </p>
+              )}
             </div>
           </div>
         </div>

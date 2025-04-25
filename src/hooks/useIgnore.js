@@ -12,7 +12,6 @@ const useIgnore = () => {
         {},
         { withCredentials: true }
       );
-      console.log("data:", data);
       dispatch(removeUserFromFeed(recevierId));
     } catch (error) {
       console.log("error:", error);

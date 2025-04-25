@@ -17,7 +17,7 @@ const errorHandler = (error) => {
       errorMessage = "Server error - Please try again later";
     }
 
-    alert(data);
+    // alert(data);
     throw new Error(`${errorMessage} (Status: ${status})`);
   } else if (error.request) {
     // The request was made but no response was received
