@@ -42,7 +42,7 @@ const Login = () => {
             </h1>
             {isSignup && (
               <>
-                <label className="input validator">
+                <label className="input validator my-2">
                   <input
                     type="text"
                     required

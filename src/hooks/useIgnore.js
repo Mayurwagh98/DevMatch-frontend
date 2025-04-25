@@ -15,6 +15,7 @@ const useIgnore = () => {
       dispatch(removeUserFromFeed(recevierId));
     } catch (error) {
       console.log("error:", error);
+      
     }
   };
 
