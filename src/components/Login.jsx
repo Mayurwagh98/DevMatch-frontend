@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { useSelector } from "react-redux";
 import useSignup from "../hooks/useSignup";
@@ -8,10 +7,10 @@ const Login = () => {
   const { loginError } = useSelector((state) => state.user);
   const { login } = useLogin();
   const { signup } = useSignup();
-  const emailRef = useRef("elon@gmail.com");
-  const passwordRef = useRef("Elon@1234");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
   const firstNameRef = useRef("");
-  const lastNameRef = useRef("Elon@1234");
+  const lastNameRef = useRef("");
   const [isSignup, setIsSignup] = useState(false);
 
   const handleLogin = async (text) => {
