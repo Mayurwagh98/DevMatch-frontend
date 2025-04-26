@@ -14,12 +14,9 @@ const useSignup = () => {
   const signup = async (signupData) => {
     try {
       dispatch(requestLogin());
-      const { data } = await axios.post(
-        "http://localhost:8000/auth/signup",
-        signupData,
-        { withCredentials: true }
-      );
-      console.log("data:", data);
+      const { data } = await axios.post(BASE_URL + "/auth/signup", signupData, {
+        withCredentials: true,
+      });
       dispatch(addUser(data.newUser));
       if (data.success) {
         navigate("/");
