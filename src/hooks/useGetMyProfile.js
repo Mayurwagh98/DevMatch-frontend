@@ -2,11 +2,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import { addUser, requestLogin } from "../redux/authSlices/loginSlice";
-import errorHandler from "../helpers/errorHandler";
+
+import { useNavigate } from "react-router-dom";
 
 const useGetMyProfile = () => {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const getMyProfile = async () => {
     if (userData) return;
@@ -17,7 +19,9 @@ const useGetMyProfile = () => {
       });
       dispatch(addUser(data));
     } catch (error) {
-      errorHandler(error).message;
+      if (error.status === 401) {
+        navigate("/login");
+      }
     }
   };
   return { getMyProfile };
