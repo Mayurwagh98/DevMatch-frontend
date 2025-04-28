@@ -21,6 +21,8 @@ const useLogin = () => {
       dispatch(addUser(data.sanitizedUser));
       if (data.success) {
         navigate("/");
+      } else {
+        navigate("/login");
       }
     } catch (error) {
       dispatch(addLoginError(error.response.data || "something went wrong"));
