@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
-import { addUser } from "../redux/authSlices/loginSlice";
+import { addUser, requestLogin } from "../redux/authSlices/loginSlice";
 import errorHandler from "../helpers/errorHandler";
 
 const useGetMyProfile = () => {
@@ -11,6 +11,7 @@ const useGetMyProfile = () => {
   const getMyProfile = async () => {
     if (userData) return;
     try {
+      dispatch(requestLogin());
       const { data } = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
