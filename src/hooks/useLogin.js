@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addLoginError,
   addUser,
@@ -12,6 +12,7 @@ import { BASE_URL } from "../utils/constants";
 const useLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const login = async (loginData) => {
     try {
       dispatch(requestLogin());
@@ -21,8 +22,6 @@ const useLogin = () => {
       dispatch(addUser(data.sanitizedUser));
       if (data.success) {
         navigate("/");
-      } else {
-        navigate("/login");
       }
     } catch (error) {
       dispatch(addLoginError(error.response.data || "something went wrong"));
