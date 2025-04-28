@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Body from "./components/Body";
 import Login from "./components/Login";
@@ -19,45 +19,43 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/">
-        <Routes>
-          <Route path="/" element={<Body />}>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Feed />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/connections"
-              element={
-                <ProtectedRoute>
-                  <MyConnections />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/requests"
-              element={
-                <ProtectedRoute>
-                  <Requests />
-                </ProtectedRoute>
-              }
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Body />}>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Feed />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/connections"
+            element={
+              <ProtectedRoute>
+                <MyConnections />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/requests"
+            element={
+              <ProtectedRoute>
+                <Requests />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+      </Routes>
     </>
   );
 }
