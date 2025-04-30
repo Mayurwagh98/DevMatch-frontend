@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useGetConnections from "../hooks/useGetConnections";
 
 const MyConnections = () => {
@@ -34,6 +35,12 @@ const MyConnections = () => {
                   {skills.join(", ")}
                 </span>
               </div>
+              <Link
+                to={`/chat/${_id}`}
+                className="bg-purple-600 p-2 rounded-md"
+              >
+                Chat
+              </Link>
             </div>
           )
         )}
