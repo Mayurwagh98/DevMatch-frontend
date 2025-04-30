@@ -8,6 +8,7 @@ import useGetMyProfile from "./hooks/useGetMyProfile";
 import Profile from "./components/Profile";
 import MyConnections from "./components/MyConnections";
 import Requests from "./components/Requests.jsx";
+import Chat from "./components/Chat.jsx";
 
 function App() {
   const { getMyProfile } = useGetMyProfile();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/connections" element={<MyConnections />} />
           <Route path="/requests" element={<Requests />} />
+          <Route path="/chat/:receiverId" element={<Chat />} />
         </Route>
       </Routes>
     </>
