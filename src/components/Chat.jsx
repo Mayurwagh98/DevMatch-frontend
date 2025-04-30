@@ -7,7 +7,6 @@ const Chat = () => {
   const { receiverId } = useParams();
   const { userData } = useSelector((state) => state.user);
   const [chatMsg, setChatMsg] = useState([]);
-  console.log("chatMsg:", chatMsg);
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
