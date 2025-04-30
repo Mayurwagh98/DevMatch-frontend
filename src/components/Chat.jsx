@@ -1,13 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createSocketConnection } from "../utils/socket";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import useChat from "../hooks/useChat";
 
 const Chat = () => {
   const { receiverId } = useParams();
+  const { getChat } = useChat(receiverId);
   const { userData } = useSelector((state) => state.user);
   const [chatMsg, setChatMsg] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    getChat(setChatMsg);
+  }, [receiverId]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatMsg]);
 
   useEffect(() => {
     if (!userData) return;
@@ -19,10 +34,16 @@ const Chat = () => {
       receiverId: receiverId,
     });
 
-    socket.on("messageReceived", ({ firstName, message }) => {
-      console.log(firstName, message);
-      setChatMsg((prev) => [...prev, { firstName, message }]);
-    });
+    socket.on(
+      "messageReceived",
+      ({ firstName, lastName, photoUrl, message, createdAt }) => {
+        console.log(firstName, message);
+        setChatMsg((prev) => [
+          ...prev,
+          { firstName, lastName, photoUrl, message, createdAt },
+        ]);
+      }
+    );
 
     return () => {
       socket.disconnect();
@@ -33,7 +54,9 @@ const Chat = () => {
     const socket = createSocketConnection();
     socket.emit("sendMessage", {
       firstName: userData?.firstName,
+      lastName: userData?.lastName,
       userId: userData?._id,
+      photoUrl: userData?.photoUrl,
       receiverId: receiverId,
       message: newMessage,
     });
@@ -41,44 +64,35 @@ const Chat = () => {
   };
 
   return (
-    <div className="border border-teal-600 w-[50%] h-[60vh] mx-auto my-[6%] rounded-md flex flex-col justify-between p-2">
+    <div className="border border-teal-600 w-[50%] h-[70vh] mx-auto my-[6%] rounded-md flex flex-col justify-between p-2">
       <div className="border-b border-b-teal-400 py-2 px-3">
-        <h2 className="text-xl">Chat with Mayur</h2>
+        <h2 className="text-xl">Chat</h2>
       </div>
-      {chatMsg?.map((msg, index) => (
-        <div className="chat chat-start" key={index}>
-          <div className="chat-image avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS chat bubble component"
-                src={userData?.photoUrl}
-              />
+      <div className="h-full overflow-y-auto">
+        {chatMsg?.map((msg, index) => (
+          <div
+            className={`chat ${
+              msg?.firstName === userData?.firstName ? "chat-end" : "chat-start"
+            } my-3`}
+            key={index}
+          >
+            <div className="chat-image avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src={msg?.photoUrl}
+                />
+              </div>
             </div>
+            <div className="chat-header">
+              {msg?.firstName} {msg?.lastName}
+            </div>
+            <div className="chat-bubble">{msg?.message}</div>
+            <div className="chat-footer opacity-50">Delivered</div>
           </div>
-          <div className="chat-header">
-            {msg?.firstName}
-            <time className="text-xs opacity-50">12:45</time>
-          </div>
-          <div className="chat-bubble">{msg?.message}</div>
-          <div className="chat-footer opacity-50">Delivered</div>
-        </div>
-      ))}
-      {/* <div className="chat chat-end">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src={userData?.photoUrl}
-            />
-          </div>
-        </div>
-        <div className="chat-header">
-          Anakin
-          <time className="text-xs opacity-50">12:46</time>
-        </div>
-        <div className="chat-bubble">{newMessage}</div>
-        <div className="chat-footer opacity-50">Seen at 12:46</div>
-      </div> */}
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
 
       <form
         className="w-full py-3 mx-auto"
