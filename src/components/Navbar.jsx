@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import useLogout from "../hooks/useLogout";
 import { Link } from "react-router-dom";
+import DevMatch_icon from "../assets/DevMatch_icon.png";
 
 const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
@@ -10,6 +11,7 @@ const Navbar = () => {
     <div className="navbar bg-base-300 shadow-md">
       <div className="flex-1">
         <Link className="btn btn-ghost text-xl" to={"/"}>
+          <img src={DevMatch_icon} className="w-[20px] h-[20px] rounded-full" />
           DevMatch
         </Link>
       </div>
