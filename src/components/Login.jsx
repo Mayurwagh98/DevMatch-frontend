@@ -33,8 +33,8 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center mx-auto my-24">
-        <div className="card bg-neutral text-neutral-content min-h-[300px] w-[30%]">
+      <div className="flex justify-center items-center mx-auto my-[20%] sm:my-16 md:my-24 px-4 sm:px-6 md:px-8">
+        <div className="card bg-neutral text-neutral-content min-h-[300px] w-full max-w-sm sm:max-w-md md:max-w-lg">
           <div className="card-body items-center text-center">
             <h1 className="text-2xl font-bold">
               {isSignup ? "Sign up" : "Login"}
