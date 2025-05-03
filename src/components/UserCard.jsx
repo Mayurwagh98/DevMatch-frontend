@@ -22,7 +22,7 @@ const UserCard = ({ user }) => {
           <p>{age}</p>
           <p>{about}</p>
           <p>{skills}</p>
-          <div className="card-actions justify-center items-center w-full">
+          <div className="card-actions justify-center items-center w-full mt-3">
             <ToolTip
               children={
                 <button
