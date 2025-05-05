@@ -1,4 +1,7 @@
 import useIgnore from "../hooks/useIgnore";
+import { FcLike } from "react-icons/fc";
+import { FcDislike } from "react-icons/fc";
+import ToolTip from "./ToolTip";
 
 const UserCard = ({ user }) => {
   const { _id, firstName, lastName, age, photoUrl, about, skills } = user;
@@ -19,19 +22,29 @@ const UserCard = ({ user }) => {
           <p>{age}</p>
           <p>{about}</p>
           <p>{skills}</p>
-          <div className="card-actions justify-end">
-            <button
-              className="btn btn-primary"
-              onClick={() => handleIgnore("ignored", _id)}
-            >
-              Ignore
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleIgnore("interested", _id)}
-            >
-              Interested
-            </button>
+          <div className="card-actions justify-center items-center w-full mt-3">
+            <ToolTip
+              children={
+                <button
+                  className="flex justify-center items-center p-2 cursor-pointer border border-gray-600 rounded-md mx-2"
+                  onClick={() => handleIgnore("ignored", _id)}
+                >
+                  <FcDislike className="text-2xl" />
+                </button>
+              }
+              text="Ignore"
+            />
+            <ToolTip
+              children={
+                <button
+                  className="flex justify-center items-center p-2 cursor-pointer border border-gray-600 rounded-md"
+                  onClick={() => handleIgnore("interested", _id)}
+                >
+                  <FcLike className="text-2xl" />
+                </button>
+              }
+              text="Interested"
+            />
           </div>
         </div>
       </div>

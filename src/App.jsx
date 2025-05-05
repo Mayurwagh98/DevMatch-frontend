@@ -9,6 +9,9 @@ import Profile from "./components/Profile";
 import MyConnections from "./components/MyConnections";
 import Requests from "./components/Requests.jsx";
 import Chat from "./components/Chat.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
+import RefundPolicy from "./components/RefundPolicy.jsx";
+import TermsService from "./components/TermsService.jsx";
 
 function App() {
   const { getMyProfile } = useGetMyProfile();
@@ -27,6 +30,9 @@ function App() {
           <Route path="/connections" element={<MyConnections />} />
           <Route path="/requests" element={<Requests />} />
           <Route path="/chat/:receiverId" element={<Chat />} />
+          <Route path="/privacy_policy" element={<PrivacyPolicy />} />
+          <Route path="/refund_policy" element={<RefundPolicy />} />
+          <Route path="/terms_service" element={<TermsService />} />
         </Route>
       </Routes>
     </>
