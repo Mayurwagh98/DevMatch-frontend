@@ -7,8 +7,7 @@ const useChat = (receiverId) => {
       const { data } = await axios.get(BASE_URL + `/chat/${receiverId}`, {
         withCredentials: true,
       });
-      
-      console.log('data:', data)
+
       const chatMessages = data?.messages.map((msg) => {
         const { sender, message } = msg;
         return {

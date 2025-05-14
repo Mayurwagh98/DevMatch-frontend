@@ -37,7 +37,6 @@ const Chat = () => {
     socket.on(
       "messageReceived",
       ({ firstName, lastName, photoUrl, message, createdAt }) => {
-        console.log(firstName, message);
         setChatMsg((prev) => [
           ...prev,
           { firstName, lastName, photoUrl, message, createdAt },
@@ -87,7 +86,7 @@ const Chat = () => {
             <div className="chat-header">
               {msg?.firstName} {msg?.lastName}
             </div>
-            <div className="chat-bubble">{msg?.message}</div>
+            <div className="chat-bubble text-[0.9rem]">{msg?.message}</div>
             <div className="chat-footer opacity-50">Delivered</div>
           </div>
         ))}
@@ -95,7 +94,7 @@ const Chat = () => {
       </div>
 
       <form
-        className="w-full py-3 mx-auto"
+        className="w-full py-3 mx-auto flex"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
