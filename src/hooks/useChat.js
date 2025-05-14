@@ -20,7 +20,6 @@ const useChat = (receiverId) => {
       });
       setChatMsg(chatMessages);
     } catch (error) {
-      console.log("error:", error);
       throw new Error(error);
     }
   };

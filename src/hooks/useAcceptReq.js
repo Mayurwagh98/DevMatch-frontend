@@ -15,10 +15,8 @@ const useAcceptReq = () => {
           withCredentials: true,
         }
       );
-      console.log("data:", data);
       dispatch(removeRequest(requestId));
     } catch (error) {
-      console.log("error:", error);
       errorHandler(error).message;
     }
   };

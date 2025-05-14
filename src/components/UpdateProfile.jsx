@@ -36,7 +36,7 @@ const UpdateProfile = ({ user: userData }) => {
         setProfileMessage("");
       }, 3000);
     } catch (error) {
-      console.log("error:", error);
+      throw new Error(error);
     }
   };
 
