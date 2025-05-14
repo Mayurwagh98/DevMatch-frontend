@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../redux/feedSlices/feedSlice";
+import errorHandler from "../helpers/errorHandler";
 
 const useIgnore = () => {
   const dispatch = useDispatch();
@@ -14,8 +15,7 @@ const useIgnore = () => {
       );
       dispatch(removeUserFromFeed(recevierId));
     } catch (error) {
-      console.log("error:", error);
-      
+      errorHandler(error).message;
     }
   };
 

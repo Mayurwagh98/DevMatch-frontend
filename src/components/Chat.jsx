@@ -37,7 +37,6 @@ const Chat = () => {
     socket.on(
       "messageReceived",
       ({ firstName, lastName, photoUrl, message, createdAt }) => {
-        console.log(firstName, message);
         setChatMsg((prev) => [
           ...prev,
           { firstName, lastName, photoUrl, message, createdAt },
@@ -64,7 +63,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="border border-teal-600 w-[50%] h-[70vh] mx-auto my-[6%] rounded-md flex flex-col justify-between p-2">
+    <div className="border border-teal-600 w-[50%] h-[60vh] mx-auto my-[4%] rounded-md flex flex-col justify-between p-2">
       <div className="border-b border-b-teal-400 py-2 px-3">
         <h2 className="text-xl">Chat</h2>
       </div>
@@ -87,7 +86,7 @@ const Chat = () => {
             <div className="chat-header">
               {msg?.firstName} {msg?.lastName}
             </div>
-            <div className="chat-bubble">{msg?.message}</div>
+            <div className="chat-bubble text-[0.9rem]">{msg?.message}</div>
             <div className="chat-footer opacity-50">Delivered</div>
           </div>
         ))}
@@ -95,13 +94,13 @@ const Chat = () => {
       </div>
 
       <form
-        className="w-full py-3 mx-auto"
+        className="w-full py-3 mx-auto flex"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           type="text"
           placeholder="Type your message"
-          className="border border-purple-500 rounded-md p-2 mx-2 w-[85%] text-sm"
+          className="border border-purple-500 rounded-md p-2 mx-2 w-[85%] text-sm outline-none"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
