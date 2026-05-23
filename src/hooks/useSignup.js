@@ -7,6 +7,7 @@ import {
 } from "../redux/authSlices/loginSlice";
 import { useNavigate } from "react-router-dom";
 import errorHandler from "../helpers/errorHandler";
+import { BASE_URL } from "../utils/constants";
 
 const useSignup = () => {
   const dispatch = useDispatch();
